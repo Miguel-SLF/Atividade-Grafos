@@ -27,9 +27,9 @@ Inserir e remover vértices
 
 ## 👨‍💻 Integrantes do Grupo
 
-]Este projeto foi desenvolvido por:
+Este projeto foi desenvolvido por:
 
-* Alecsandro
+* Alecsandro - RA: 1986042
 * Luan
 * Miguel Felipe
 * Pedro Lopes
