@@ -30,6 +30,7 @@ Inserir e remover vértices
 Este projeto foi desenvolvido por:
 
 * Alecsandro - RA: 1986042
-* Luan
-* Miguel Felipe
-* Pedro Lopes
+* Luan - RA: 2017668
+* Miguel Felipe - RA: 1999127
+* Pedro Lopes - RA: 2000088
+ 
