@@ -1,3 +1,12 @@
+#Em grupos de 2 a 4 alunos, implemente um algoritmo que trabalhe grafos utilizando Lista de Adjacência onde seja possível:
+# ● Inserir e remover vértices
+# ● Inserir e remover arestas
+# ● Calcular e exibir o grau de cada vértice
+# ● Verificar se existe uma aresta que vai de um vértice para o outro
+# ● Listar todos os Vizinhos de um vértice
+# ● Verificar se um determinado percurso é possível
+
+
 def criar_grafo():
     return {}
 

@@ -25,12 +25,21 @@ Para cada uma das três implementações, o algoritmo deve ser capaz de realizar
 
 ---
 
-## 🔎 Funcionalidades Novas (Busca em Largura)
+## 🔎 Busca em Largura (BFS)
 
-Além das operações básicas, o projeto foi estendido para incluir algoritmos de Busca em Largura (BFS), conforme a segunda parte da atividade:
+Além das operações básicas, o projeto inclui algoritmos de Busca em Largura (BFS):
 
 * Implementação da **Busca em Largura (BFS) Padrão**.
 * Implementação da **Busca de Menor Caminho** utilizando BFS.
+
+---
+
+## 🌳 Busca em Profundidade (DFS) e Detecção de Ciclos
+
+O projeto também foi atualizado com a implementação da Busca em Profundidade (DFS), conforme exigido pela atividade avaliativa:
+
+* Implementação da **Busca em Profundidade (DFS) Padrão**.
+* Implementação da **Detecção de Ciclos** utilizando Busca em Profundidade.
 
 ---
 

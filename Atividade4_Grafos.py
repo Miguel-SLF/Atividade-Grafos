@@ -1,3 +1,6 @@
+#Implemente a Busca em Largura em cima de uma das implementações de grafos 
+# (lista de adjacência, matriz de adjacência ou lista de arestas) que você desejar
+
 def bfs_lista_de_arestas(lista_arestas, vertice_inicial):
     fila = [vertice_inicial]
     na_fila = {vertice_inicial} 
@@ -32,7 +35,7 @@ def bfs_lista_de_arestas(lista_arestas, vertice_inicial):
 
     return visitados
 
-# --- Exemplo de Uso ---
+# Grafo Criado
 
 # Grafo:
 # 0 -- 1 -- 3

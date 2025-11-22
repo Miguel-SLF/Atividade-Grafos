@@ -1,3 +1,5 @@
+# Implemente a busca de menor caminho utilizando Busca em Largura
+
 from collections import deque
 
 def bfs_padrao(graph, start_node):
@@ -48,7 +50,6 @@ def bfs_menor_caminho(graph, start_node, end_node):
     print("-" * 25)
 
     while queue:
-        # 3a. Retirar o primeiro item da fila
         (current_node, path) = queue.popleft()
 
         print(f"Processando Nó: '{current_node}'")
@@ -56,15 +57,12 @@ def bfs_menor_caminho(graph, start_node, end_node):
         print(f"  Fila (após retirar): {list(queue)}")
         print(f"  Visitados (atual): {visited}")
 
-        # 3b. Verificar se o vértice... é o destino
         if current_node == end_node:
             print(f"\nDestino '{end_node}' encontrado!")
             return path
         
-        # 3d. Obter os vizinhos do vértice
         for neighbor in graph.get(current_node, []):
             
-            # Verificar se o vizinho não foi visitado
             if neighbor not in visited:
 
                 visited.add(neighbor) 
@@ -77,11 +75,10 @@ def bfs_menor_caminho(graph, start_node, end_node):
         print(f"  Fila (após adicionar vizinhos): {list(queue)}")
         print("-" * 25)
 
-    # 4. Retornar vazio (nenhum caminho encontrado)
     print(f"Fila vazia. Caminho de '{start_node}' para '{end_node}' não encontrado.")
     return None
 
-# --- Exemplo de Uso ---
+
 if __name__ == "__main__":
     
     grafo = {
@@ -94,7 +91,6 @@ if __name__ == "__main__":
         'G': ['F']
     }
 
-    # Teste da Busca em Largura para Menor Caminho 
     start_node_caminho = 'A'
     end_node_caminho = 'G'
     

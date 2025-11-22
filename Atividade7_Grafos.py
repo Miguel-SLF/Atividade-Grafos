@@ -1,72 +1,67 @@
-class GrafoCiclosDFS:
+# Implemente a detecção de ciclos utilizando Busca em Profundidade
 
-    def __init__(self):
-        self.adj = {}
-        self.encontrou_ciclo = False
+def _dfs_ciclos_recursivo(graph, current_node, visited, parent_map):
+    visited.add(current_node)
+    print(f"Explorando: {current_node} (Pai: {parent_map.get(current_node, 'Nenhum')})")
 
-    def adicionar_vertice(self, u):
-        if u not in self.adj:
-            self.adj[u] = []
+    for neighbor in sorted(graph.get(current_node, [])):
 
-    def adicionar_aresta(self, u, v, direcionado=False):
-        self.adicionar_vertice(u)
-        self.adicionar_vertice(v)
+        if neighbor not in visited:
+            parent_map[neighbor] = current_node
+            if _dfs_ciclos_recursivo(graph, neighbor, visited, parent_map):
+                return True
+        
+        elif neighbor != parent_map.get(current_node):
+            print(f" *** CICLO ENCONTRADO! *** A aresta ({current_node}, {neighbor}) forma um ciclo.")
+            return True 
+    
+    return False
 
-        if v not in self.adj[u]:
-            self.adj[u].append(v)
 
-        if not direcionado:
-            if u not in self.adj[v]:
-                self.adj[v].append(u)
+def detectar_ciclos_dfs(graph):
+    print("\n--- Iniciando Detecção de Ciclos via DFS ---")
+    
+    all_vertices = set(graph.keys())
+    for neighbors in graph.values():
+        all_vertices.update(neighbors)
+        
+    visited = set()
+    parent_map = {} 
 
-    def _dfs_ciclos_recursivo(self, u, visitados, pai):
-        visitados.add(u)
-        print(f"Explorando: {u} (Pai: {pai})")
-
-        for v in self.adj.get(u, []):
-            if self.encontrou_ciclo:
+    for u in sorted(all_vertices):
+        if u not in visited:
+            parent_map[u] = None 
+            if _dfs_ciclos_recursivo(graph, u, visited, parent_map): 
+                print("\nResultado Final: O grafo contém um ciclo.")
                 return True
 
-            if v not in visitados:
+    print("\nResultado Final: O grafo não contém ciclos.")
+    return False
 
-                if self._dfs_ciclos_recursivo(v, visitados, u):
-                    return True
-            
-            elif v != pai:
-                self.encontrou_ciclo = True
-                print(f" CICLO ENCONTRADO!  A aresta ({u}, {v}) forma um ciclo (pois {v} não é o pai {pai} de {u}).")
-                return True 
-        
-        return False 
+if __name__ == "__main__":
+    
+    grafo_com_ciclo = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D'],
+        'C': ['A', 'D'], 
+        'D': ['B', 'C', 'E'],
+        'E': ['D', 'F'],
+        'F': ['E']
+    }
 
-
-    def detectar_ciclos(self):
-
-        print("\n--- Iniciando Detecção de Ciclos via DFS ---")
-        visitados = set()
-        self.encontrou_ciclo = False
-
-        for u in sorted(self.adj.keys()):
-            if u not in visitados:
-                if self._dfs_ciclos_recursivo(u, visitados, None): 
-                    print("\nResultado: O grafo contém um ciclo.")
-                    return True
-
-        print("\nResultado: O grafo não contém ciclos.")
-        return False
-
-
-g_ciclo = GrafoCiclosDFS()
-
-g_ciclo.adicionar_aresta('A', 'B')
-g_ciclo.adicionar_aresta('A', 'C')
-g_ciclo.adicionar_aresta('B', 'D')
-g_ciclo.adicionar_aresta('C', 'E')
-g_ciclo.adicionar_aresta('D', 'F')
-g_ciclo.adicionar_aresta('E', 'F') 
-g_ciclo.adicionar_aresta('F', 'G')
-
-g_ciclo.adicionar_vertice('H') 
-g_ciclo.adicionar_aresta('I', 'J')
-
-g_ciclo.detectar_ciclos()
+    print("Grafo 1 (Com Ciclo):", grafo_com_ciclo)
+    detectar_ciclos_dfs(grafo_com_ciclo)
+    
+    print("\n" + "=" * 50 + "\n")
+    
+    grafo_sem_ciclo = {
+        '0': ['1', '2'],
+        '1': ['0', '3', '4'],
+        '2': ['0', '5'],
+        '3': ['1'],
+        '4': ['1'],
+        '5': ['2'],
+    }
+    
+    print("Grafo 2 (Sem Ciclo):", grafo_sem_ciclo)
+    detectar_ciclos_dfs(grafo_sem_ciclo)
